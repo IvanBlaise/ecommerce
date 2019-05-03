@@ -90,7 +90,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="res/admin/dist/img/avatar.png" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -174,17 +174,17 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="res/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="res/admin/dist/img/avatar.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">Ivan Carlos</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="res/admin/dist/img/avatar.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  Ivan Carlos - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -231,10 +231,10 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="res/admin/dist/img/avatar.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>Ivan Carlos</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
