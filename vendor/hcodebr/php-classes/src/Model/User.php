@@ -8,10 +8,9 @@ use \Hcode\DB\Sql;
 class User extends Model {
 
 	const SESSION = "User";
+	
 
-	protected $fields = [
-		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
-	];
+	
 
 	public static function login($login, $password):User
 	{
@@ -86,17 +85,8 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		/*
-			desperson VARCHAR(64), 
-			deslogin VARCHAR(64), 
-			despassword VARCHAR(256), 
-			desemail VARCHAR(128), 
-			nrphone BIGINT, 
-			inadmin TINYINT
-		*/
-
 			
-		$result = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", 
+		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", 
 			array(
 			":desperson"=>$this->getdesperson(),
 			":deslogin"=>$this->getdeslogin(),
@@ -106,10 +96,51 @@ class User extends Model {
 			":inadmin"=>$this->getinadmin()
 		));
 
-		var_dump($result);
+			$this->setData($results[0]);
+	}
 
-		//$this->setData($result[0]);
+	public function get($iduser)
+	{
 
+		$sql = new Sql();
+
+		$result =  $sql-> select("select * from tb_users a INNER JOIN tb_persons b USING(idperson) where a.iduser = :iduser", 
+			array(
+				"iduser"=>$iduser
+		));
+			
+		$this->setData($result[0]);
+		
+
+	}
+
+
+	public function update()
+	{
+		$sql = new Sql();
+
+			
+		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", 
+			array(
+			"iduser"=>$this->getiduser(),
+			":desperson"=>$this->getdesperson(),
+			":deslogin"=>$this->getdeslogin(),
+			":despassword"=>$this->getdespassword(),
+			":desemail"=>$this->getdesemail(),
+			":nrphone"=>$this->getnrphone(),
+			":inadmin"=>$this->getinadmin()
+		));
+
+			$this->setData($results[0]);
+	}
+
+	public function delete()
+	{
+		$sql = new Sql();
+
+		$sql->query("CALL sp_users_delete(:iduser)", array(
+			"iduser"=>$this->getiduser()
+		));
 	}
 
 }

@@ -4,6 +4,9 @@ namespace Hcode;
 class Model {
 
 	private $values = [];
+	protected $fields = [
+		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister", "desperson", "desemail", "nrphone"
+	];
 
 	public function setData($data)
 	{
