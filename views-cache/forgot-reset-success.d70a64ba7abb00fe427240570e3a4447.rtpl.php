@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Ecommerce</title>
+  <title>AdminLTE 2 | Reset Password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -26,31 +26,15 @@
 <!-- Automatic element centering -->
 <div class="lockscreen-wrapper">
   <div class="lockscreen-logo">
-    <a href="/res/admin/index2.html"><b>Admin Ecommerce</b></a>
+    <a href="/res/admin/index2.html"><b>Admin</b>LTE</a>
   </div>
 
-  <!-- START LOCK SCREEN ITEM -->
-  <div class="lockscreen-item">
-
-    <!-- lockscreen credentials (contains the form) -->
-    <form  action="/admin/forgot" method="post">
-      <div class="input-group">
-        <input type="email" class="form-control" placeholder="Digite o e-mail" name="email">
-
-        <div class="input-group-btn">
-          <button type="submit" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
-        </div>
-      </div>
-    </form>
-    <!-- /.lockscreen credentials -->
-
-  </div>
   <!-- /.lockscreen-item -->
   <div class="help-block text-center">
-    Digite seu e-mail e receba as instruções para redefinir a sua senha.
-  </div>
-  <div class="text-center">
-    <a href="/admin/login">Or sign in as a different user</a>
+    <div class="callout callout-success">
+      <h4>Senha Alterada!</h4>
+      <p>Tente fazer o login com sua nova senha.<br><a href="/admin/login">Clique aqui</a> para fazer o login.</p>
+    </div>
   </div>
   <div class="lockscreen-footer text-center">
     Copyright &copy; 2014-2016 <b><a href="http://almsaeedstudio.com" class="text-black">Almsaeed Studio</a></b><br>
