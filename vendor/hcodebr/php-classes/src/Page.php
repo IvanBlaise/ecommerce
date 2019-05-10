@@ -42,6 +42,7 @@ class Page {
 		if ($this->options['footer'] === true) $this->tpl->draw("footer", false);
 
 	}
+	
 
 	private function setData($data = array())
 	{
