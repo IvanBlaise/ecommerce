@@ -18,13 +18,7 @@ $app->get('/', function() {
 	
 	$page->setTpl("index");
 
-	/*$sql = new Hcode\DB\Sql();
-	$param =[
-		":ID"=>1
-	];
-	$results = $sql->select("select * from tb_users where iduser = :ID", $param);
-
-	echo json_encode($results);*/
+	
 });
 
 $app->get('/admin', function() {
@@ -311,7 +305,7 @@ $app->get("/admin/categories/:idcategory", function($idcategory)
 $app->post("/admin/categories/:idcategory", function($idcategory)
 {
 	User::verifyLogin();
-	
+
 	$category = new Category();
 
 	$category->get((int)$idcategory);
@@ -322,6 +316,21 @@ $app->post("/admin/categories/:idcategory", function($idcategory)
 
 	header("Location: /admin/categories");
 	exit();	
+});
+
+$app->get("/categories/:idcategory", function($idcategory)
+{
+	$category = new Category();
+
+	$category->get((int)$idcategory);
+
+	$page = new Page();
+	
+	$page->setTpl("category", [
+		"category"=>$category->getValues(),
+		"products"=>[]
+	]);
+
 
 
 });
