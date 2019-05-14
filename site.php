@@ -37,7 +37,7 @@ $app->get("/categories/:idcategory", function($idcategory)
 		]);
 	}
 
-	
+
 	$page = new Page();
 	
 	$page->setTpl("category", [
