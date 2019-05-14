@@ -82,21 +82,46 @@ class Category extends Model {
 		if($related === true){
 
 			return $sql->select("select * from tb_products where idproduct in (
-							SELECT a.idproduct FROM tb_products a
-							inner join tb_productscategories b on a.idproduct = b.idproduct
-							where b.idcategory = :idcategory)", [
-								":idcategory"=>$this->getidcategory()
+										SELECT a.idproduct FROM tb_products a
+										inner join tb_productscategories b on a.idproduct = b.idproduct
+										where b.idcategory = :idcategory)", [
+											":idcategory"=>$this->getidcategory()
 							]);
 
 		}else{
 
 			return $sql->select("select * from tb_products where idproduct not in (
-							SELECT a.idproduct FROM tb_products a
-							inner join tb_productscategories b on a.idproduct = b.idproduct
-							where b.idcategory = :idcategory)",[
-								":idcategory"=>$this->getidcategory()
+										SELECT a.idproduct FROM tb_products a
+										inner join tb_productscategories b on a.idproduct = b.idproduct
+										where b.idcategory = :idcategory)",[
+											":idcategory"=>$this->getidcategory()
 							]);
 		}
+	}
+
+	public function getProductsPage($page = 1, $itemsPerPage = 4)
+	{
+		$start = ($page-1) * $itemsPerPage ;
+
+		$sql = new sql();
+
+		$results = $sql->select("
+				select SQL_CALC_FOUND_ROWS * from tb_products a
+				inner join tb_productscategories b on a.idproduct = b.idproduct
+				inner join tb_categories c on b.idcategory = c.idcategory
+				where c.idcategory = :idcategory
+				limit $start, $itemsPerPage;
+			", [
+				":idcategory"=>$this->getidcategory()
+			]);
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+		return [
+			"data"=>Product::checkList($results),
+			"total"=>(int)$resultTotal[0]["nrtotal"],
+			"pages"=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
 	}
 
 	public function addProduct(Product $product)
@@ -122,9 +147,9 @@ class Category extends Model {
 			":idcategory"=>$this->getidcategory(),
 			":idproduct"=>$product->getidproduct()
 		]);
-		
-		
 	}
+
+
 
 
 
