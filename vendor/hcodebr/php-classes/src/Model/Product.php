@@ -18,6 +18,7 @@ class Product extends Model {
 		return $sql->select("select * from tb_products ORDER BY desproduct");
 	}
 
+
 	public static function checkList($list)
 	{
 
