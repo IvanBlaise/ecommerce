@@ -44,7 +44,6 @@ $app->get("/categories/:idcategory", function($idcategory)
 		"category"=>$category->getValues(),
 		"products"=>$pagination["data"],
 		"pages"=>$pages
-
 	]);
 });
 
