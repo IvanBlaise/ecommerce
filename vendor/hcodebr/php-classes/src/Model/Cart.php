@@ -13,17 +13,24 @@ class Cart extends Model {
 
 	const SESSION = "Cart";
 
+
+
 	public static function getFromSession()
 	{
+
+
 		$cart = new Cart();
+
 
 		if(isset($_SESSION[Cart::SESSION]) && (int)$_SESSION[Cart::SESSION]["idcart"] > 0){
 
 			$cart->get((int)$_SESSION[Cart::SESSION]["idcart"]);
+			
 
 		}else 
 		{
 			$cart->getFromSessionId();
+
 
 			if(!(int)$cart->getidcart() > 0){
 
@@ -55,6 +62,7 @@ class Cart extends Model {
 		$_SESSION[Cart::SESSION] = $this->getvalues();
 
 	}
+
 
 	public function get(int $idcart)
 	{
@@ -99,6 +107,14 @@ class Cart extends Model {
 		]);
 
 		$this->setData($results[0]);
+	}
+
+
+	public static function logout()
+	{
+
+		$_SESSION[Cart::SESSION] = NULL;
+
 	}
 
 

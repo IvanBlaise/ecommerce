@@ -72,9 +72,12 @@ $app->get("/cart", function()
 });
 
 
+$app->get("/cart/logout", function()
+{
+	Cart::logout();
+	header("Location: /");
+	exit;
+});
 
 
-
-
-
- ?>
+?>

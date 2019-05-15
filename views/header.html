@@ -44,6 +44,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> Lista de Desejos</a></li>
                             <li><a href="#"><i class="fa fa-shopping-cart"></i> Meu Carrinho</a></li>
                             <li><a href="#"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="/cart/logout" class="fa fa-lock">Sign out</a></li>
                         </ul>
                     </div>
                 </div>

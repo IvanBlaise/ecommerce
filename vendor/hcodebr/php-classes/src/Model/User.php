@@ -15,6 +15,7 @@ class User extends Model {
 	
 	public static function getFromSession()
 	{
+
 		$user = new User();
 
 		if(isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]["iduser"] > 0){
@@ -27,7 +28,8 @@ class User extends Model {
 	}
 
 	public static function checkLogin($inadmin = true)
-	{
+	{	
+				
 		if(
 			!isset($_SESSION[User::SESSION])
 			|| 
@@ -56,10 +58,20 @@ class User extends Model {
 
 
 		}
+	}
 
+	public static function verifyLogin($inadmin = true)
+	{
 
+		if (!User::checkLogin($inadmin)) {
+
+			header("Location: /admin/login");
+			exit;
+
+		}
 
 	}
+
 
 	
 
@@ -102,18 +114,7 @@ class User extends Model {
 
 	}
 
-	public static function verifyLogin($inadmin = true)
-	{
-
-		if (User::checkLogin($inadmin)) {
-			
-			header("Location: /admin/login");
-			exit;
-
-		}
-
-	}
-
+	
 	public static function listAll()
 	{
 		$sql = new Sql();
