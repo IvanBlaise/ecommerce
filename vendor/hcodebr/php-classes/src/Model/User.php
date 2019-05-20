@@ -203,7 +203,7 @@ class User extends Model {
 		));
 	}
 
-	public static function getForgot($email)
+	public static function getForgot($email, $inadmin = true)
 	{
 
 		$sql = new Sql();
@@ -240,7 +240,16 @@ class User extends Model {
 
 				$code = base64_encode(openssl_encrypt($datarecovery["idrecovery"],'AES-128-CBC', SECRET, 0, SECRET_IV));
 
-				$link ="http://www.ivancommerce.com.br:8080/admin/forgot/reset?code=$code";
+				if($inadmin === true){
+
+					$link ="http://www.ivancommerce.com.br:8080/admin/forgot/reset?code=$code";
+
+
+				}else{					
+
+					$link ="http://www.ivancommerce.com.br:8080/forgot/reset?code=$code";
+
+				}
 
 				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha da Ivan Store", "forgot", 
 					array(
