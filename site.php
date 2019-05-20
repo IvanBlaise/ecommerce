@@ -80,13 +80,6 @@ $app->get("/cart", function()
 });
 
 
-$app->get("/cart/logout", function()
-{
-	Cart::logout();
-	header("Location: /");
-	exit;
-});
-
 $app->get("/cart/:idproduct/add", function($idproduct)
 {
 	$product = new Product();
@@ -167,9 +160,37 @@ $app->get("/login", function(){
 
 	$page = new Page();
 
-	$page->setTpl("login");
+	$page->setTpl("login",[
+		"error"=>User::getMsgError()
+	]);
+});
+
+$app->post("/login", function(){
+
+	try{
+
+	User::login($_POST["login"], $_POST["password"]);
+
+}catch(exception $e){
+
+	User::setMsgError($e->getMessage());
+
+
+}
+
+	header("Location: /checkout");
+	exit;
+
 });
 
 
+$app->get("/logout", function()
+{
+	
+	User::logout();
+
+	header("Location: /login");
+	exit;
+});
 
 ?>
