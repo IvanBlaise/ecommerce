@@ -217,7 +217,7 @@ class Cart extends Model {
 			$qs = http_build_query([
 				"nCdEmpresa"=>"",
 				"sDsSenha"=>"",
-				"nCdServico"=>"41106",
+				"nCdServico"=>"40010",
 				"sCepOrigem"=>"42710400",
 				"sCepDestino"=>$nrzipcode,
 				"nVlPeso"=>$totals["vlweight"],
