@@ -176,9 +176,19 @@ class User extends Model {
 	}
 
 
-	public function update()
+	public function update($aux = false)
 	{
 		$sql = new Sql();
+
+		if($aux){
+
+			$senha = User::getPasswordHash($this->getdespassword());
+
+		}else{
+
+			$senha = $this->getdespassword();
+
+		}
 
 			
 		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", 
@@ -186,7 +196,7 @@ class User extends Model {
 			"iduser"=>$this->getiduser(),
 			":desperson"=>utf8_decode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>$this->getdespassword(),
+			":despassword"=>$senha,
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
