@@ -47,7 +47,7 @@ $app->get("/admin/categories", function()
 
 	$page = new PageAdmin();
 
-	$page->setTpl("categories",array(
+	$page->setTpl("categories", array(
 		"categories"=>$pagination["data"],
 		"search"=>$search,
 		"pages"=>$pages
