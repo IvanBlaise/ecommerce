@@ -75,9 +75,8 @@ class User extends Model {
 			}else{
 
 				header("Location: /login");
+				exit;	
 			}
-
-			exit;	
 		}
 
 	}
@@ -90,6 +89,8 @@ class User extends Model {
 
 		$sql = new Sql();
 
+
+
 		$results = $sql->select("SELECT * FROM tb_users a inner join tb_persons b on a.idperson = b.idperson WHERE a.deslogin = :LOGIN", array(
 			":LOGIN"=>$login
 		));
@@ -99,6 +100,9 @@ class User extends Model {
 		}
 
 		$data = $results[0];
+		
+
+		
 
 		if (password_verify($password, $data["despassword"]) === true) {
 
