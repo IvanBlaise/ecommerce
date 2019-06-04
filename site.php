@@ -168,6 +168,7 @@ $app->get("/checkout", function(){
 	}
 
 	if (!$address->getdesaddress()) $address->setdesaddress("");
+	if (!$address->getdesnumber()) $address->setdesnumber("");
 	if (!$address->getdescomplement()) $address->setdescomplement("");
 	if (!$address->getdesdistrict()) $address->setdesdistrict("");
 	if (!$address->getdescity()) $address->setdescity("");
@@ -542,7 +543,7 @@ $app->get("/boleto/:idorder", function($idorder){
 	// DADOS DO SEU CLIENTE
 	$dadosboleto["sacado"] = $order->getdesperson();
 	$dadosboleto["endereco1"] = $order->getdesaddress() . " " . $order->getdesdistrict();
-	$dadosboleto["endereco2"] = $order->getdescity() . " - ". $order->getdesstate() . " - " . $order->getdescountry(). " - CEP: " . $order->getdeszipcode();
+	$dadosboleto["endereco2"] = utf8_encode($order->getdescity()) . " - ". $order->getdesstate() . " - " . $order->getdescountry(). " - CEP: " . $order->getdeszipcode();
 
 	// INFORMACOES PARA O CLIENTE
 	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Ivan E-commerce";
